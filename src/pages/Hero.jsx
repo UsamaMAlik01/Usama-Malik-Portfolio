@@ -273,7 +273,7 @@ useEffect(() => {
     flexDirection: 'column',
     alignItems: 'center',
     gap: '6px',
-    animation: 'bounce 2s infinite',
+    animation: isMobile ? 'none' : 'bounce 2s infinite',
   }}
 >
       </button>

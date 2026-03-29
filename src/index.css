@@ -47,7 +47,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -55,6 +59,7 @@ body {
   color: #e2e8f0;
   font-family: var(--font-body);
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── Custom Scrollbar ── */
