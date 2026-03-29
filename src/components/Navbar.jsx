@@ -35,15 +35,14 @@ function Hamburger({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className="flex flex-col gap-1.25 p-1 bg-transparent border-none cursor-pointer"
+      style={{ display: 'flex', flexDirection: 'column', gap: '5px', margin: '8px' , padding: '4px', background: 'none', border: 'none', cursor: 'pointer' }}
     >
-      <span className="block w-6 gap-1.25 rounded-sm" style={{ backgroundColor: 'var(--color-gold-400)' }} />
-      <span className="block w-6 gap-1.25 rounded-sm" style={{ backgroundColor: 'var(--color-gold-400)' }} />
-      <span className="block w-6 gap-1.25 rounded-sm" style={{ backgroundColor: 'var(--color-gold-400)' }} />
+      <span style={{ display: 'block', width: '24px', height: '2px', borderRadius: '2px', backgroundColor: 'var(--color-gold-400)' }} />
+      <span style={{ display: 'block', width: '24px', height: '2px', borderRadius: '2px', backgroundColor: 'var(--color-gold-400)' }} />
+      <span style={{ display: 'block', width: '24px', height: '2px', borderRadius: '2px', backgroundColor: 'var(--color-gold-400)' }} />
     </button>
   )
 }
-
 function DesktopLinks({ activeSection, handleNavClick }) {
   return (
     <ul className="flex items-center gap-10 list-none m-0 p-0">
@@ -99,19 +98,19 @@ function MobileMenu({ handleNavClick }) {
 
 function NavContent({ isMobile, menuOpen, setMenuOpen, activeSection, handleNavClick }) {
   
-  function getRightSide() {
-    if (isMobile) {
-      return <Hamburger onClick={() => setMenuOpen(!menuOpen)} />
-    }
-    return <DesktopLinks activeSection={activeSection} handleNavClick={handleNavClick} />
+function getRightSide() {
+  if (isMobile) {
+    return <Hamburger onClick={() => setMenuOpen(!menuOpen)} />
   }
+  return <DesktopLinks activeSection={activeSection} handleNavClick={handleNavClick} />
+}
 
   return (
     <div className="max-w-6xl ml-10! px-6 h-17.5 flex items-center justify-between">
       <a href="/" className="text-2xl font-bold no-underline" style={{ fontFamily: 'var(--font-display)' }}>
-        <span style={{ color: 'var(--color-gold-400)' }}>&lt;</span>
-        <span className="text-slate-100">Usama</span>
-        <span style={{ color: 'var(--color-gold-400)' }}>/&gt;</span>
+        <span style={{ color: 'var(--color-gold-400)' }}>/&lt;</span>
+        <span className="text-slate-100">UsamaMalik</span>
+        <span style={{ color: 'var(--color-gold-400)' }}>&gt;</span>
       </a>
       {getRightSide()}
     </div>
@@ -122,7 +121,7 @@ export default function Navbar() {
   const [scrolled,      setScrolled]      = useState(false)
   const [menuOpen,      setMenuOpen]      = useState(false)
   const [activeSection, setActiveSection] = useState('')
-  const [isMobile,      setIsMobile]      = useState(window.innerWidth < 768)
+  const [isMobile,      setIsMobile]      = useState(() => window.innerWidth < 768)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -130,11 +129,12 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 768)
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
+
+useEffect(() => {
+  function check() { setIsMobile(window.innerWidth < 768) }
+  window.addEventListener('resize', check)
+  return () => window.removeEventListener('resize', check)
+}, [])
 
   useEffect(() => {
     const sections = ['about', 'skills', 'projects', 'contact']

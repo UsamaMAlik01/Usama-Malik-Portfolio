@@ -52,6 +52,13 @@ export default function Hero() {
   const [roleIndex,  setRoleIndex]  = useState(0)
   const [displayed,  setDisplayed]  = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
+
+useEffect(() => {
+  function check() { setIsMobile(window.innerWidth < 768) }
+  window.addEventListener('resize', check)
+  return () => window.removeEventListener('resize', check)
+}, [])
 
   useEffect(() => {
     const current = roles[roleIndex]
@@ -95,7 +102,20 @@ export default function Hero() {
       </div>
 
       {/* Main Content */}
-<div className="max-w-6xl mx-auto px-12 pt-17.5 flex items-center justify-around gap-8 w-full">
+<div style={{
+  maxWidth: '72rem',
+  margin: '0 auto',
+  padding: '0 1.5rem',
+  paddingTop: '70px',
+  display: 'flex',
+  flexDirection: isMobile ? 'column' : 'row',
+  alignItems: 'center',
+  justifyContent: 'space-around',
+  gap: '3rem',
+  width: '100%',
+  overflowX: 'hidden',
+  opacity: 1,
+}}>
 
         {/* Left: Text */}
 <div className="flex-1 flex flex-col  gap-6 max-w-145">
@@ -193,7 +213,12 @@ export default function Hero() {
 
 
         {/* Right: Photo */}
-        <div className="hidden-mobile shrink-0 flex flex-col items-center">
+        <div style={{
+              flexShrink: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}>
           <div className="relative" style={{ width: '320px', height: '380px' }}>
             <CornerBracket position="tl" />
             <CornerBracket position="tr" />
@@ -235,23 +260,22 @@ export default function Hero() {
 </div>
       {/* Scroll Arrow */}
       <button
-        onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 bg-transparent border-none cursor-pointer"
-        style={{ animation: 'bounce 2s infinite' }}
-      >
-        <span className="text-[0.7rem] tracking-widest"
-          style={{ color: 'rgba(251,191,36,0.5)', fontFamily: 'var(--font-mono)' }}
-        >
-          SCROLL
-        </span>
-        <div className="w-6 h-6 -mt-2"
-          style={{
-            border: '2px solid rgba(251,191,36,0.4)',
-            borderTop: 'none',
-            borderLeft: 'none',
-            transform: 'rotate(45deg)',
-          }}
-        />
+  onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}
+  style={{
+    position: 'absolute',
+    bottom: '2rem',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    display: isMobile ? 'none' : 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '6px',
+    animation: 'bounce 2s infinite',
+  }}
+>
       </button>
 
       <style>{`
