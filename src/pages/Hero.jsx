@@ -78,9 +78,18 @@ useEffect(() => {
 
   return (
     <section
-      id="hero"
-      className="min-h-screen flex items-center  justify-center relative overflow-hidden  bg-navy-950]"
-    >
+  id="hero"
+  style={{
+    minHeight: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    overflow: 'hidden',
+    width: '100%',
+    backgroundColor: 'var(--color-navy-950)',
+  }}
+>
 
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -105,8 +114,8 @@ useEffect(() => {
 <div style={{
   maxWidth: '72rem',
   margin: '0 auto',
-  padding: '0 1.5rem',
-  paddingTop: '70px',
+  padding: isMobile ? '1.5rem' : '0 1.5rem',
+  paddingTop: isMobile ? '90px' : '70px',
   display: 'flex',
   flexDirection: isMobile ? 'column' : 'row',
   alignItems: 'center',
@@ -214,16 +223,18 @@ useEffect(() => {
 
         {/* Right: Photo */}
         <div style={{
-              flexShrink: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}>
+            flex: isMobile ? 'none' : 1,
+            width: isMobile ? '100%' : 'auto',
+            maxWidth: '600px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1.5rem',
+          }}>
           <div className="relative" style={{ width: '320px', height: '380px' }}>
-            <CornerBracket position="tl" />
-            <CornerBracket position="tr" />
-            <CornerBracket position="bl" />
-            <CornerBracket position="br" />
+            {isMobile ? null : <CornerBracket position="tl" />}
+            {isMobile ? null : <CornerBracket position="tr" />}
+            {isMobile ? null : <CornerBracket position="bl" />}
+            {isMobile ? null : <CornerBracket position="br" />}
 
             <div className="w-full h-full rounded-xl overflow-hidden"
               style={{
