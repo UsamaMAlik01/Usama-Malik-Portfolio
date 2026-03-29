@@ -108,7 +108,7 @@ function getRightSide() {
   return (
     <div className="max-w-6xl ml-10! px-6 h-17.5 flex items-center justify-between">
       <a href="/" className="text-2xl font-bold no-underline" style={{ fontFamily: 'var(--font-display)' }}>
-        <span style={{ color: 'var(--color-gold-400)' }}>/&lt;</span>
+        <span style={{ color: 'var(--color-gold-400)' }}>&lt;/</span>
         <span className="text-slate-100">UsamaMalik</span>
         <span style={{ color: 'var(--color-gold-400)' }}>&gt;</span>
       </a>

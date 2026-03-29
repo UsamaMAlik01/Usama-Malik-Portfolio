@@ -37,7 +37,7 @@ export default function Footer() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
           <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 700, color: '#f1f5f9' }}>
-            <span style={{ color: 'var(--color-gold-400)' }}>/&lt;</span>
+            <span style={{ color: 'var(--color-gold-400)' }}>&lt;/</span>
             UsamaMalik
             <span style={{ color: 'var(--color-gold-400)' }}>&gt;</span>
           </span>
